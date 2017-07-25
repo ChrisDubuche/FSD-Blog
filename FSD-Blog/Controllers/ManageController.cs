@@ -11,6 +11,7 @@ using FSD_Blog.Models;
 namespace FSD_Blog.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

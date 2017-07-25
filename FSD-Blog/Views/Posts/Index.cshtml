@@ -1,0 +1,71 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<FSD_Blog.Models.Post>
+
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('../../img/home.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="site-heading">
+                    <h1 class="blogh1">Christian Dubuche's Blog</h1>
+                    <hr class="small">
+                    <span class="subheading">My Journey On Building & Furthing My Career as a Full Stack Developer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</header>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-2">
+            @foreach (var post in Model)
+            {
+                <div class="post-preview">
+                    <a href="@Url.Action("Details", "Posts", new { Id = post.Id })">
+                        <h2 class="post-title">
+                            @Html.DisplayFor(model => post.Title)
+                        </h2>
+                        <h3 class="post-subtitle">
+                            @Html.DisplayFor(model => post.Abstract)
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by Christian Dubuche on @post.Created</p>
+                </div>
+                <hr>
+            }            
+            <!-- Pager -->
+            <ul class="pager">
+                <li class="next">
+                    <a href="#">Older Posts &rarr;</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-2">
+            @foreach (var post in Model.Take(3))
+            {
+                <div>
+                    <a href="@Url.Action("Details","Posts", new { slug = post.Slug})">
+                        <h3>@Html.DisplayFor(model => post.Title)</h3>
+                    </a>
+                    <p><h4>Written by Christian Dubuche on @post.Created</h4></p>
+                </div>
+                <hr>
+            }
+        </div>       
+    </div>
+</div>
+
+
+
+

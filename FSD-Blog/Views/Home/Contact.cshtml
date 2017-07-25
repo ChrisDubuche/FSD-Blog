@@ -1,17 +1,93 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@model FSD_Blog.Models.EmailModel
+
+@{
+        ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<style>
+    h2, h3, h4 {
+        color: white;
+        font-family: 'Roboto Slab', serif;
+        text-transform: uppercase;
+    }
+    .btn-primary {
+        margin-top: 20px;
+        margin-bottom: 50px; 
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+    }
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+</style>
+
+<header class="intro-header" style="background-image: url('../../img/parallax.jpg')">
+    <h2>@ViewBag.Title</h2>
+    <h4>Send me a message</h4>
+    <hr />
+
+    <div class="container">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.FromName, new { @class = "col-md-2 control-label", style = "color: white" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FromName, new { @class = "form-control", placeholder = "Write your full name here" })
+                    @Html.ValidationMessageFor(m => m.FromName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FromEmail, new { @class = "col-md-2 control-label", style = "color: white" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FromEmail, new { @class = "form-control", placeholder = "Your@email.com" })
+                    @Html.ValidationMessageFor(m => m.FromEmail)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Subject, new { @class = "col-md-2 control-label", style = "color: white" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = "Subject" })
+                    @Html.ValidationMessageFor(m => m.Subject)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Body, new { @class = "col-md-2 control-label", style = "color: white" })
+                <div class="col-md-10">
+                    <textarea class="form-control form-control-white" cols="20" data-val="true" data-val-required="The Body field is required." id="Body" name="Body" placeholder="Let's chat, I can't wait to hear from you." rows="2"></textarea>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-primary" value="Send" />
+                </div>
+
+            </div>
+
+        }
+    </div>
+
+</header>
+
+
+
+
+
+@section scripts {
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+    <script>
+            $(function () {
+                tinymce.init({
+                    selector: '#Body',
+                    plugins: "lists advlist"
+                });
+            });
+    </script>
+}
+
+
+
+
+      

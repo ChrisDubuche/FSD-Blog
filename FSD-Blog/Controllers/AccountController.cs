@@ -13,6 +13,7 @@ using FSD_Blog.Models;
 namespace FSD_Blog.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -86,6 +87,7 @@ namespace FSD_Blog.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
+                    //@ViewBag.ErrorMessage = "Invalid login attempt.";
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
