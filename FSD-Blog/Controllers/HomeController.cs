@@ -15,8 +15,7 @@ using PagedList.Mvc;
 namespace FSD_Blog.Controllers
 {
     [RequireHttps]
-    public class HomeController : Controller
-       
+    public class HomeController : Controller       
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -71,13 +70,6 @@ namespace FSD_Blog.Controllers
         {
             return View();
         }
-
-        //public ActionResult Contact()
-        //{
-        //    ViewBag.Message = "Your contact page.";
-
-        //    return View();
-        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]

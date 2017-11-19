@@ -55,8 +55,7 @@
                         <a href="@Url.Action("Register", "Account")">Register</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Login", "Account")">Log In</a>
-                        @*@Html.Partial("_LoginPartial")*@
+                        <a href="@Url.Action("Login", "Account")">Log In</a>                      
                     </li>
                     <li>
                         <a href="@Url.Action("Contact", "Home")">Contact Me</a>
@@ -129,11 +128,11 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; <strong>Christian Yves Dubuche 2017</strong></p>
+                    <p class="copyright text-muted">Copyright &copy; <strong>Christian Yves Dubuche @DateTime.Now.Year</strong></p>
                 </div>
             </div>
         </div>
-        @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+        
         
     </footer>
 

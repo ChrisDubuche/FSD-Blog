@@ -8,8 +8,6 @@ using Owin;
 using FSD_Blog.Models;
 using Owin.Security.Providers.GitHub;
 using Owin.Security.Providers.LinkedIn;
-using Owin.Security.Providers.StackExchange;
-using Microsoft.Owin.Security.Twitter;
 
 namespace FSD_Blog
 {

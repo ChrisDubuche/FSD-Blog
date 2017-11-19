@@ -11,11 +11,11 @@ namespace FSD_Blog.Models
         public int Id { get; set; }
         public string Title { get; set; }
 
-        //allowing html to display in the body
        [AllowHtml]
         public string Body { get; set; }
         public string Abstract { get; set; }
 
+        [AllowHtml]
         public string Slug { get; set; }
         public string MediaURL { get; set; }
         public DateTimeOffset Created { get; set; }
